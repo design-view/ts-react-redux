@@ -1,5 +1,6 @@
-import { GithubProfile } from "../api/github";
+import { getUserProfile, GithubProfile } from "../api/github";
 import { AxiosError } from 'axios';
+import { Dispatch } from "redux";
 //1.액션타입 - 서버로 데이터요청, 데이터전송성공, 데이터전송에러
 const GET_USER_PROFILE = 'github/GET_USER_PROFILE' as const;
 const GET_USER_PROFILE_SUCCESS = 'github/GET_USER_PROFILE_SUCCESS' as const;
@@ -34,8 +35,21 @@ const initialState: GithubState = {
         error: null
     }
 }
+//thunk함수 
+export const getUserProfileThunk = (username:string):any => async (dispatch:Dispatch) => {
+    dispatch({type:GET_USER_PROFILE});
+    try{
+        const userProfile = await getUserProfile(username);
+        dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: userProfile})
+    }
+    catch(e){
+        dispatch({ type: GET_USER_PROFILE_ERROR, payload: e})
+    }
+}
+
+
 //4.리듀서 생성 - state타입 action타입 
-function github(state:GithubState=initialState,action:GithubAction){
+function github2(state:GithubState=initialState,action:GithubAction){
     switch(action.type){
         case GET_USER_PROFILE: 
             return {
@@ -65,4 +79,4 @@ function github(state:GithubState=initialState,action:GithubAction){
             return state;
     }
 }
-export default github;
+export default github2;

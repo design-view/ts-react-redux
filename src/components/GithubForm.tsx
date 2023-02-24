@@ -1,12 +1,16 @@
 import React, { ChangeEvent, useState } from 'react';
 
-const GithubForm = () => {
+type GithubFormProps = {
+    onSubmitUser:(username: string)=>void
+}
+const GithubForm = ({onSubmitUser}:GithubFormProps) => {
     const [input, setInput ] = useState("");
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setInput(e.target.value);
     }
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        onSubmitUser(input);
     }
     return (
         <div>

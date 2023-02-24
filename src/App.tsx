@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import CounterContainer from './containers/CounterContainer';
 import TodosContainer from './containers/TodosContainer';
-import GithubProfileLoader from './containers/GithubProfileLoader';
+import GithubContainer from './containers/GithubContainer';
 
 function App() {
   return (
     <div className="App">
       <CounterContainer/>
       <TodosContainer/>
-      <GithubProfileLoader/>
+      <GithubContainer/>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import React from 'react';
 type GithubUserProps = {
     name: string;
     thumbnail: string;
-    bio: string;
+    bio: string | null;
     blog: string;
 }
 const GithubUser = ({name, thumbnail, bio, blog}: GithubUserProps) => {
