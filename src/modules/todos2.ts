@@ -73,5 +73,4 @@ function todos2(
 
 }
 
-
 export default todos2;
